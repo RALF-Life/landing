@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RALF</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        #plane {
+            position: absolute;
+            height: 50%;
+        }
+        span {
+            color: gray;
+        }
+        li {
+            margin-bottom: 1rem;
+            background-color: #e9e9e9;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            list-style: none;
+            width: fit-content;
+        }
+        li:hover {
+            background-color: #cdcdcd;
+        }
+        a {
+            text-decoration: none;
+            font-weight: bold;
+        }
+        ul {
+            padding-left: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>RALF</h1>
+    <img id="plane" src="./plane.png" alt="">
+
+    <div id="gem" style="display: none;">
+        <h2>Landing Page 🛩️</h2>
+
+        <ul>
+            <li>
+                <a href="https://srs.ralf.life">👉 SRS</a>
+                <br />
+                <span>Software Requirements Specification</span>
+            </li>
+            <li>
+                <a href="https://sad.ralf.life">😭 SAD</a>
+                <br />
+                <span>Software Architecture Document</span>
+            </li>
+            <li>
+                <a href="https://github.com/RALF-Life">👨‍💻 GitHub</a>
+                <br />
+                <span>Source Code 💅</span>
+            </li>
+        </ul>
+    </div>
+</body>
+
+<script>
+    const plane = document.getElementById("plane");
+    const gem = document.getElementById("gem");
+
+    let x = -1000;
+    let count = 0;
+    
+    let previousMultiplier = 999999999999999;
+    let ok = true;
+
+    setInterval(() => {
+        x += 100;
+        const multiplier = 0.0001 * x * x;
+        if (multiplier > previousMultiplier && ok) {
+            ok = false;
+            gem.style.display = "block";
+        }
+        previousMultiplier = multiplier;
+
+        count += multiplier;
+        plane.style.left = `${count}px`;
+    }, 1000/30);
+</script>
+</html>
